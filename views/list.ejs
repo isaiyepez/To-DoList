@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<%- include("header") -%>
 
-    <h1> <%= kindOfDay %> </h1>
-    <ul>
-        <%= for (var i = 0; i < listItems.length; i++) {  %>
-            <li> <%= listItems[i] %> </li>
-        <%= } %>
-    </ul>
+<div class="box" id="heading">
+        <h1> <%= listTitle %> </h1>
+    </div>
 
-    <form action="index.html" method="POST">
-        <input type="text" name="task" placeholder="Input your new task! 📝">
-        <button type="submit" name="submit">Add</button>
-    </form>
+    <div class="box">
+        <% for (var i = 0; i < listItems.length; i++) {  %>
+            <div class="item">
+                <input type="checkbox"> // Inside the styles.css, you will see the input + p, which means that
+                <p> <%= listItems[i] %> </p>// the style selects all p elements that are placed immediately after the input
+            </div> //you will also see [] brackets, which means that you want to target the elements inside those brackets.
+            <% } %>
+
+
+        <form class="item" action="/" method="POST">
+            <input type="text" name="task" placeholder="Input your new task! 📝" autocomplete="off">
+            <button type="submit" name="list" value=<%= listTitle %>>+</button>
+        </form>
+  
+    </div>
     
-</body>
-</html>
+    <%- include("footer") -%>
