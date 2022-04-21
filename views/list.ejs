@@ -1,23 +1,30 @@
 <%- include("header") -%>
 
 <div class="box" id="heading">
-        <h1> <%= listTitle %> </h1>
-    </div>
+    <h1 id="title"> <%= listTitle %> </h1>
+</div>
 
-    <div class="box">
-        <% for (var i = 0; i < listItems.length; i++) {  %>
-            <div class="item">
-                <input type="checkbox"> // Inside the styles.css, you will see the input + p, which means that
-                <p> <%= listItems[i] %> </p>// the style selects all p elements that are placed immediately after the input
-            </div> //you will also see [] brackets, which means that you want to target the elements inside those brackets.
-            <% } %>
+<div class="box">
+    <% for (var i = 0; i < listItems.length; i++) {  %>
+    <form action="/delete" method="post">
+        <div class="item">
+            <input type="checkbox" name="checkbox" 
+            value="<%=listItems[i]._id%>" onchange="this.form.submit()">
+            <p> <%= listItems[i].Name %> </p>
+        </div>
+        <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+    </form>
+    <% } %>
+    <!--
+Inside the styles.css, you will see the input + p, which means that
+the style selects all p elements that are placed immediately after the input
+you will also see [] brackets, which means that you want to target the elements inside those brackets.
+-->
+    <form class="item" action="/" method="POST">
+        <input type="text" name="task" placeholder="Input your new task! 📝" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+    </form>
 
+</div>
 
-        <form class="item" action="/" method="POST">
-            <input type="text" name="task" placeholder="Input your new task! 📝" autocomplete="off">
-            <button type="submit" name="list" value=<%= listTitle %>>+</button>
-        </form>
-  
-    </div>
-    
-    <%- include("footer") -%>
+<%- include("footer") -%>
